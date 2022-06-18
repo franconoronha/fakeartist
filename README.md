@@ -11,5 +11,6 @@ npm run install
 
 ## Execução
 ```
-npm run build
+cd fakeartist
+npm run build-app
 ```

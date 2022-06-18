@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd ./api && npm i && cd ../front && npm i",
-    "build": "concurrently --kill-others \"vue-cli-service build\" \"node ../api/index.js\""
   },
   "repository": {
     "type": "git",
