@@ -1,0 +1,21 @@
+{
+  "name": "fakeartist",
+  "version": "1.0.0",
+  "description": "Versão de browser do jogo Fake Artist Goes to New York",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd ./api && npm i && cd ../front && npm i",
+    "build": "concurrently --kill-others \"vue-cli-service build\" \"node ../api/index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franconoronha/fakeartist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franconoronha/fakeartist/issues"
+  },
+  "homepage": "https://github.com/franconoronha/fakeartist#readme"
+}
