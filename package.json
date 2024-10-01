@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/franconoronha/fakeartist/issues"
   },
-  "homepage": "https://github.com/franconoronha/fakeartist#readme"
+  "homepage": "https://github.com/franconoronha/fakeartist#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
 }

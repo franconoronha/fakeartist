@@ -1,0 +1,117 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: monospace, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+@components {
+ 
+}
+*/
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #090909;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+input {
+  font-family: monospace, Arial, sans-serif;
+  font-size: 1em;
+  padding: 4px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid gray;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #c0c0c0;;
+  background-color: #111111;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+button:hover {
+  color: #646cff;
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.red-button {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+button.red-button:hover {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+button.green-button {
+  color: #44ff44;
+  border-color: #44ff44;
+}
+
+button.green-button:hover {
+  color: #00ff00;
+  border-color: #00ff00;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  position: relative;
+  text-align: start;
+  align-items: center;
+  justify-content: center;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
