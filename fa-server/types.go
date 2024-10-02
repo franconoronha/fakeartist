@@ -13,6 +13,7 @@ type Rooms struct {
 type Room struct {
 	players map[string]Player
 	inGame  bool
+	turn    int
 }
 
 type Player struct {
@@ -35,6 +36,7 @@ const (
 	ChatMessage
 	StartGame
 	ChangeColor
+	Draw
 )
 
 type Message struct {
@@ -65,4 +67,12 @@ type OutgoingMessage struct {
 type ChangeColorMessage struct {
 	Color  string `json:"Color"`
 	Player string `json:"Player"`
+}
+
+type DrawMessage struct {
+	StartX float64 `json:"StartX"`
+	StartY float64 `json:"StartY"`
+	EndX   float64 `json:"EndX"`
+	EndY   float64 `json:"EndY"`
+	Color  string  `json:"Color"`
 }

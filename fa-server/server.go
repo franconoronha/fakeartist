@@ -23,12 +23,14 @@ func newPlayer(name string, connection *websocket.Conn, roomId string, admin boo
 		connection: connection,
 		Connected:  true,
 		Name:       name,
-		Color:      "#000000",
-		roomIn:     roomId,
-		Admin:      admin,
+		// Color:      "#ffffff",
+		Color:  generateRandomColor(),
+		roomIn: roomId,
+		Admin:  admin,
 	}
 }
 
+// TODO: make it a rooms function to avoid repetition
 func generateUniqueCode() string {
 	const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	code := make([]byte, 6)
@@ -36,6 +38,10 @@ func generateUniqueCode() string {
 		code[i] = letters[rand.Intn(len(letters))]
 	}
 	return string(code)
+}
+
+func generateRandomColor() string {
+	return fmt.Sprintf("#%06x", rand.Intn(0xffffff))
 }
 
 func (rooms *Rooms) messageHandler(message []byte, player *Player) {
@@ -76,6 +82,9 @@ func (rooms *Rooms) messageHandler(message []byte, player *Player) {
 
 		player.Color = colorData.Color
 		rooms.Roomcast(Message{"server", ChangeColor, colorData}, player.roomIn, player.Id, false)
+	case Draw:
+		rooms.Roomcast(Message{player.Name, Draw, baseMsg.Data}, player.roomIn, player.Id, true)
+
 	default:
 		fmt.Printf("Unknown action: %d\n", baseMsg.Action)
 	}
@@ -98,7 +107,8 @@ func (rooms *Rooms) createRoom(w http.ResponseWriter, r *http.Request) {
 	var roomId = generateUniqueCode()
 	rooms.rooms[roomId] = Room{
 		make(map[string]Player),
-		false,
+		true,
+		0,
 	}
 
 	var player = newPlayer(name, connection, roomId, true)
@@ -138,10 +148,19 @@ func (rooms *Rooms) joinRoom(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if _, ok := rooms.rooms[roomId]; ok {
+	if room, ok := rooms.rooms[roomId]; ok {
 		connection, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
 			fmt.Println(err)
+			return
+		}
+
+		// TODO:
+		if room.inGame {
+			w.WriteHeader(http.StatusForbidden)
+			w.Write([]byte("Room is in game"))
+
+			fmt.Println("Room is in game")
 			return
 		}
 
